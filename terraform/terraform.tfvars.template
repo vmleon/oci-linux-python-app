@@ -1,0 +1,7 @@
+region = "xxxxx"
+tenancy_ocid = "xxxxx"
+compartment_ocid = "xxxxx"
+api_private_key_path = "~/.oci/oci_api_key.pem"
+api_fingerprint = "xxxxx"
+current_user_ocid = "xxxxx"
+ssh_public_key= "xxxxx"
