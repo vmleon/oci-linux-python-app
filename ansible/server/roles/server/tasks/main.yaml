@@ -1,0 +1,59 @@
+---
+- name: Install virtualenv
+  dnf:
+    name: python3-virtualenv
+- name: Copy python scripts
+  copy:
+    src: "{{ item }}"
+    dest: /home/opc/pythonapp/
+    owner: opc
+    group: opc
+  with_items:
+    - "wsgi.py"
+    - "app.py"
+- name: Copy requirements.txt
+  copy:
+    src: "requirements.txt"
+    dest: /home/opc/pythonapp/
+    owner: opc
+    group: opc
+- name: Copy start bash script
+  copy:
+    src: app.sh
+    dest: /home/opc/pythonapp/
+    owner: opc
+    group: opc
+    mode: 0744
+- name: Install dependencies
+  pip:
+    requirements: /home/opc/pythonapp/requirements.txt
+    virtualenv: /home/opc/pythonapp/venv
+- name: FIXME probably not needed chown opc:opc for pythonapp and venv
+  file:
+    dest=/home/opc/pythonapp
+    owner=opc
+    group=opc
+    recurse=yes
+- name: Open firewall port
+  firewalld:
+    zone: public
+    port: 3000/tcp
+    permanent: yes
+    immediate: yes
+    state: enabled
+- name: Copy app service unit
+  copy:
+    src: app.service
+    dest: /etc/systemd/system/app.service
+    mode: '0644'
+- name: Reload Systemd Daemon
+  systemd:
+    daemon_reload: yes
+- name: Start service App
+  systemd:
+    state: started
+    name: app
+- name: Enable service app
+  ansible.builtin.systemd:
+    name: app
+    enabled: yes
