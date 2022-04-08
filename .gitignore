@@ -23,3 +23,10 @@ terraform.rc
 !.vscode/*.code-snippets
 .history/
 *.vsix
+
+# Python
+venv/
+__pycache__/
+
+# Ansible
+ansible/inventory/*.ini
