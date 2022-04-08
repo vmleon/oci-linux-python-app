@@ -20,7 +20,7 @@ The Python App will be listening to port 3000.
   - Create Systemd Unit
     - [Unit fails](./ansible/server/roles/server/files/app.service)
     - [app.sh](./ansible/server/roles/server/files/app.sh)
-    - `systemd` fails to start `app.sh`, but manually works like a charm. (ノಠ益ಠ)ノ彡┻━┻
+    - (ノಠ益ಠ)ノ彡┻━┻ `systemd` fails to start `app.sh`, but manually works like a charm.
 
 ## How-to
 
