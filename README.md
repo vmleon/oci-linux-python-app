@@ -59,26 +59,24 @@ Take note of the Public IP of the new linux machine.
 
 Ansible is going to provision the linux with all the necessary tools and the python application.
 
-From the main project directory change to `ansible` folder:
+From the `terraform` folder:
 
 ```
-cd ansible
+ansible-playbook -i generated/app.ini ../ansible/server/server.yaml
 ```
 
-From the terraform output you have the Public IP of the new machine.
-
-Create a file `app.ini` on the `inventory` folder and change `<PUBLIC_IP>` to the public ip of your linux instance.
+When asked:
 
 ```
-[pythonservers]
-node1 ansible_host=<PUBLIC_IP>
-
-[pythonservers:vars]
-ansible_user=opc
-ansible_private_key_file=~/.ssh/id_rsa
+Are you sure you want to continue connecting (yes/no/[fingerprint])?
 ```
 
-Run the Ansible playbook
+Answer `yes` and enter.
+
+## Python App
+
+You can change the code and reload the app with:
+
 ```
-ansible-playbook server/server.yaml
+sudo systemctl restart app
 ```
