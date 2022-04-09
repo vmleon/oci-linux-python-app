@@ -12,15 +12,7 @@ The Python App will be listening to port 3000.
 > 
 > Follow the steps in **How-to**
 
-## TODO
-
-- Terraform deployment
-  - Generate Ansible Inventory
-- Ansible
-  - Create Systemd Unit
-    - [Unit fails](./ansible/server/roles/server/files/app.service)
-    - [app.sh](./ansible/server/roles/server/files/app.sh)
-    - (ノಠ益ಠ)ノ彡┻━┻ `systemd` fails to start `app.sh`, but manually works like a charm.
+![Architecture](images/linux-python.png)
 
 ## How-to
 
