@@ -4,12 +4,8 @@ After=network.target
 
 [Service]
 User=opc
-# Environment="PATH=/home/opc/pythonapp/venv/bin:/home/opc/.local/bin:/home/opc/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin"
-Environment="PYTHONUNBUFFERED=TRUE"
 WorkingDirectory=/home/opc/pythonapp
-ExecStart=/home/opc/pythonapp/app.sh
-# StandardOutput=journal+console
-# StandardError=journal+console
+ExecStart=/bin/bash -c /home/opc/pythonapp/app.sh
 Restart=always
 RestartSec=10s
 
