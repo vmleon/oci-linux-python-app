@@ -8,7 +8,7 @@ The Python App will be listening to port 3000.
 > 
 > git clone this repository on OCI Cloud Shell
 > 
->   `git@github.com:vmleon/oci-linux-python-app.git`
+>   `git clone git@github.com:vmleon/oci-linux-python-app.git`
 > 
 > Follow the steps in **How-to**
 
@@ -40,12 +40,14 @@ Plan the deployment
 terraform plan
 ```
 
+> Answer `yes` when asked
+
 If no errors, Apply the deployment
 ```
 terraform apply
 ```
 
-Take note of the Public IP of the new linux machine.
+> Answer `yes` when asked
 
 ### Ansible
 
@@ -67,7 +69,19 @@ Answer `yes` and enter.
 
 ## Python App
 
-You can change the code and reload the app with:
+You can SSH into the machine with:
+
+```
+ssh opc@<PUBLIC_IP>
+```
+
+And test the application with:
+
+```
+curl <PUBLIC_IP>:3000
+```
+
+You can change the code (`vim`) and reload the app with:
 
 ```
 sudo systemctl restart app
