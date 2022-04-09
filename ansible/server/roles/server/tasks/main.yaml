@@ -1,8 +1,5 @@
 ---
-- name: Install virtualenv
-  dnf:
-    name: python3-virtualenv
-- name: Copy python scripts
+- name: Copy app files
   copy:
     src: "{{ item }}"
     dest: /home/opc/pythonapp/
@@ -11,12 +8,7 @@
   with_items:
     - "wsgi.py"
     - "app.py"
-- name: Copy requirements.txt
-  copy:
-    src: "requirements.txt"
-    dest: /home/opc/pythonapp/
-    owner: opc
-    group: opc
+    - "requirements.txt"
 - name: Copy start bash script
   copy:
     src: app.sh
@@ -25,9 +17,7 @@
     group: opc
     mode: 0744
 - name: Install dependencies
-  pip:
-    requirements: /home/opc/pythonapp/requirements.txt
-    virtualenv: /home/opc/pythonapp/venv
+  command: python3 -m pip install -r /home/opc/pythonapp/requirements.txt
 - name: FIXME probably not needed chown opc:opc for pythonapp and venv
   file:
     dest=/home/opc/pythonapp
